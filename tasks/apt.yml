@@ -1,0 +1,8 @@
+---
+- name: Update packages and clean
+  ansible.builtin.apt:
+    upgrade: dist
+    update_cache: true
+    cache_valid_time: 3600
+    autoremove: "{{ upgrade_packages_autoremove }}"
+    clean: "{{ upgrade_packages_clean }}"

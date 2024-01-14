@@ -1,0 +1,9 @@
+---
+- name: Update packages
+  ansible.builtin.yum:
+    name: "*"
+    state: latest
+
+- name: Autoremove packages
+  ansible.builtin.yum:
+    autoremove: "{{ upgrade_packages_autoremove }}"
