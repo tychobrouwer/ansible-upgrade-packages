@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
 
-  roles:      
+  roles:
     - role: ansible-upgrade-packages
       upgrade_packages_autoremove: true
       upgrade_packages_clean: true
