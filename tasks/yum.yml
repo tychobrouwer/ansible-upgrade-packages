@@ -1,5 +1,5 @@
 ---
-- name: Update packages
+- name: Update packages # noqa: package-latest
   ansible.builtin.yum:
     name: "*"
     state: latest
