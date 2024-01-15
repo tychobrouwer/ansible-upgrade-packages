@@ -16,8 +16,8 @@ Example Playbook
 ```yaml
     - hosts: all
       roles:
-         - { role: upgrade_packages }
-         - { role: upgrade_packages, upgrade_packages_clean: true, upgrade_packages_autoremove: true }
+         - { role: tychobrouwer.upgrade_packages }
+         - { role: tychobrouwer.upgrade_packages, upgrade_packages_clean: true, upgrade_packages_autoremove: true }
 ```
 
 License
