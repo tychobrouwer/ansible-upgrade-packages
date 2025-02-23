@@ -14,10 +14,13 @@ Example Playbook
 ----------------
 
 ```yaml
-    - hosts: all
-      roles:
-         - { role: tychobrouwer.upgrade_packages }
-         - { role: tychobrouwer.upgrade_packages, upgrade_packages_clean: true, upgrade_packages_autoremove: true }
+- hosts: all
+  roles:
+    - role: tychobrouwer.upgrade_packages
+    
+    - role: tychobrouwer.upgrade_packages
+      upgrade_packages_clean: true
+      upgrade_packages_autoremove: true
 ```
 
 License
