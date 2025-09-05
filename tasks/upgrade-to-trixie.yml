@@ -1,0 +1,56 @@
+---
+- name: Update packages and clean
+  ansible.builtin.apt:
+    upgrade: dist
+    update_cache: true
+    autoremove: true
+    clean: true
+    cache_valid_time: 3600
+
+- name: Check if reboot is required
+  ansible.builtin.stat:
+    path: /var/run/reboot-required
+  register: reboot_required
+
+- name: Reboot server
+  ansible.builtin.reboot:
+    post_reboot_delay: 30
+  when: reboot_required.stat.exists
+
+- name: Chance repos to trixie
+  ansible.builtin.replace:
+    path: /etc/apt/sources.list
+    regexp: bookworm
+    replace: trixie
+
+- name: Find all apt sources list files
+  ansible.builtin.find:
+    paths: /etc/apt/sources.list.d
+    patterns: "*.list"
+    file_type: file
+  register: apt_sources
+
+- name: Replace "bookworm" with "trixie" in apt sources files
+  ansible.builtin.replace:
+    path: "{{ item.path }}"
+    regexp: bookworm
+    replace: trixie
+  loop: "{{ apt_sources.files }}"
+
+- name: Update packages and clean
+  ansible.builtin.apt:
+    upgrade: dist
+    update_cache: true
+    autoremove: true
+    clean: true
+    cache_valid_time: 3600
+
+- name: Check if reboot is required
+  ansible.builtin.stat:
+    path: /var/run/reboot-required
+  register: reboot_required
+
+- name: Reboot server
+  ansible.builtin.reboot:
+    post_reboot_delay: 30
+  when: reboot_required.stat.exists

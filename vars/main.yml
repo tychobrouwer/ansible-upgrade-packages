@@ -2,3 +2,5 @@
 # vars file for upgrade-packages
 upgrade_packages_clean: true
 upgrade_packages_autoremove: true
+
+upgrade_to_trixie: false

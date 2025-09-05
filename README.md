@@ -21,6 +21,7 @@ Example Playbook
     - role: tychobrouwer.upgrade_packages
       upgrade_packages_clean: true
       upgrade_packages_autoremove: true
+      upgrade_to_trixie: false
 ```
 
 License

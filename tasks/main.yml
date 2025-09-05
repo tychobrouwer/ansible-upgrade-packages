@@ -7,3 +7,7 @@
 - name: Using yum
   ansible.builtin.include_tasks: yum.yml
   when: ansible_os_family == "RedHat"
+
+- name: Upgrade to Trixie
+  ansible.builtin.include_tasks: upgrade-to-trixie.yml
+  when: upgrade_to_trixie
