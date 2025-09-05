@@ -56,4 +56,4 @@
   when: reboot_required.stat.exists
 
 - name: Modernize service files
-  asible.builtin.command: apt modernize-sources
+  ansible.builtin.command: apt modernize-sources
