@@ -22,6 +22,7 @@
     path: /etc/apt/sources.list
     regexp: bookworm
     replace: trixie
+  register: replace_result
 
 - name: Find all apt sources list files
   ansible.builtin.find:
@@ -39,11 +40,15 @@
 
 - name: Update packages and clean
   ansible.builtin.apt:
+    update_cache: true
+  when: replace_result.changed
+
+- name: Update packages and clean
+  ansible.builtin.apt:
     upgrade: dist
     update_cache: true
     autoremove: true
     clean: true
-    cache_valid_time: 3600
 
 - name: Check if reboot is required
   ansible.builtin.stat:
