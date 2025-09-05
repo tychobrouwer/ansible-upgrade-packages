@@ -61,4 +61,6 @@
   when: reboot_required.stat.exists
 
 - name: Modernize service files
-  ansible.builtin.command: apt modernize-sources
+  ansible.builtin.shell: apt modernize-sources -y
+  register: modernize_result
+  changed_when: "'All sources are modern' not in modernize_result.stdout"
