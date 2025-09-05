@@ -54,3 +54,6 @@
   ansible.builtin.reboot:
     post_reboot_delay: 30
   when: reboot_required.stat.exists
+
+- name: Modernize service files
+  asible.builtin.command: apt modernize-sources

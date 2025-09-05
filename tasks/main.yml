@@ -10,4 +10,4 @@
 
 - name: Upgrade to Trixie
   ansible.builtin.include_tasks: upgrade-to-trixie.yml
-  when: upgrade_to_trixie
+  when: upgrade_to_trixie and ansible_distribution_major_version == "12"
